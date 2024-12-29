@@ -5,11 +5,11 @@ https://docs.python.org/3/library/os.path.html
 
 
 ## Note
-**Where is the start point of execution** <br>
+***Where is the start point of execution*** <br>
 In Python, the interpreter executes code from the top to the bottom of a script, starting at the first line of the file. If no specific entry point like main() is defined, Python will simply run any code that is not inside a function or class. This means the order of execution is determined by the structure of the file.
 <br>
 
-**How Python Knows Where to Start** <br>
+***How Python Knows Where to Start*** <br>
 When you run a Python script (python script.py):
 The Python interpreter starts reading the script from the first line.
 It executes all top-level statements sequentially.
@@ -26,12 +26,12 @@ with open(file_path, "r", encoding="utf-8") as file:
 ```
 <br>
 
-**Ternary Operator Syntax** <br>
+***Ternary Operator Syntax*** <br>
 The general format of Python's ternary operator is:
 `<value_if_condition_true> if <condition> else <value_if_condition_false>`
 <br>
 
-**List comprehension** <br>
+***List comprehension*** <br>
   - `fields` = [field for field in line.split() if field]`: A compact way to create a list by iterating over an iterable.<br>
   - `line.split()`: This splits the string line into a list of substrings separated by whitespace.<br>
   - `for field in ...`: This iterates over each element (substring) in the list produced by line.split().<br>
