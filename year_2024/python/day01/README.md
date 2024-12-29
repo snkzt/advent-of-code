@@ -38,7 +38,7 @@ with open(file_path, "r", encoding="utf-8") as file:
   - `field`: This is the value of each substring during the iteration. It is directly added to the resulting list.<br>
   - `if field`: This checks if field is not empty. Only non-empty fields are included in the resulting list.<br>
 
-**Example**
+- **Example**
 
 ```
 Input: line = " 12   5 "
