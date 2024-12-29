@@ -38,7 +38,9 @@ The general format of Python's ternary operator is:
   - `for field in ...`: This iterates over each element (substring) in the list produced by line.split().<br>
   - `field`: This is the value of each substring during the iteration. It is directly added to the resulting list.<br>
   - `if field`: This checks if field is not empty. Only non-empty fields are included in the resulting list.<br>
+
 <Example>
+
 ```
 Input: line = " 12   5 "
 
