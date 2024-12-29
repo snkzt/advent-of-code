@@ -34,7 +34,7 @@ The general format of Python's ternary operator is:
 
 - ***List comprehension***
 <br>
-  - `fields = [field for field in line.split() if field]`: A compact way to create a list by iterating over an iterable.<br>
+  - `fields` = [field for field in line.split() if field]`: A compact way to create a list by iterating over an iterable.<br>
   - `line.split()`: This splits the string line into a list of substrings separated by whitespace.<br>
   - `for field in ...`: This iterates over each element (substring) in the list produced by line.split().<br>
   - `field`: This is the value of each substring during the iteration. It is directly added to the resulting list.<br>
