@@ -41,7 +41,7 @@ The general format of Python's ternary operator is:
   - `if field`: This checks if field is not empty. Only non-empty fields are included in the resulting list.<br>
 <Example>
 ```
-Input: line = " 12   5 "`
+Input: line = " 12   5 "
 
 # Without the filter:
 fields = [field for field in line.split()]
