@@ -18,7 +18,7 @@ If there is an `if __name__ == "__main__":` block, Python checks if the script i
 <br>
 
 ***Read a file*** <br>
-`with open()` is suitable for reading small- to medium-sized files. For large files, it should be read in chunks or line by line to avoid memory overload: 
+- `with open()` is suitable for reading small- to medium-sized files. For large files, it should be read in chunks or line by line to avoid memory overload: 
 ```
 with open(file_path, "r", encoding="utf-8") as file:
     for line in file:
@@ -32,7 +32,7 @@ with open(file_path, "r", encoding="utf-8") as file:
 <br>
 
 ***List comprehension*** <br>
-  - `fields` = [field for field in line.split() if field]`: A compact way to create a list by iterating over an iterable.<br>
+  - `fields` = [field for field in line.split() if field]: A compact way to create a list by iterating over an iterable.<br>
   - `line.split()`: This splits the string line into a list of substrings separated by whitespace.<br>
   - `for field in ...`: This iterates over each element (substring) in the list produced by line.split().<br>
   - `field`: This is the value of each substring during the iteration. It is directly added to the resulting list.<br>
