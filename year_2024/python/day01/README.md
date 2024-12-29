@@ -6,11 +6,10 @@ https://docs.python.org/3/library/os.path.html
 
 ## Note
 - ***Where is the start point of execution***
-<br> 
 In Python, the interpreter executes code from the top to the bottom of a script, starting at the first line of the file. If no specific entry point like main() is defined, Python will simply run any code that is not inside a function or class. This means the order of execution is determined by the structure of the file.
+<br>
 
 - ***How Python Knows Where to Start***
-<br>
 When you run a Python script (python script.py):
 The Python interpreter starts reading the script from the first line.
 It executes all top-level statements sequentially.
@@ -19,16 +18,15 @@ If there is an `if __name__ == "__main__":` block, Python checks if the script i
 <br>
 
 - ***Read a file***
-<br>
 `with open()` is suitable for reading small- to medium-sized files. For large files, it should be read in chunks or line by line to avoid memory overload: 
 ```
 with open(file_path, "r", encoding="utf-8") as file:
     for line in file:
         print(line.strip())
 ```
+<br>
 
 - ***Ternary Operator Syntax***
-<br>
 The general format of Python's ternary operator is:
 `<value_if_condition_true> if <condition> else <value_if_condition_false>`
 
