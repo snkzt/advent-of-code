@@ -33,7 +33,6 @@ The general format of Python's ternary operator is:
 `<value_if_condition_true> if <condition> else <value_if_condition_false>`
 
 - ***List comprehension***
-<br>
   - `fields` = [field for field in line.split() if field]`: A compact way to create a list by iterating over an iterable.<br>
   - `line.split()`: This splits the string line into a list of substrings separated by whitespace.<br>
   - `for field in ...`: This iterates over each element (substring) in the list produced by line.split().<br>
