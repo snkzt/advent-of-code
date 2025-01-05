@@ -5,8 +5,13 @@
   - Convert the column values to integers.
 3. Process each line:
   - Sort each column with ASC order.
+4. Solution for part 1
   - Calculate the difference between the two columns.
-  - Add the difference into a variable.
+  - Add the difference into a variable and return.
+5. Solution for part 2
+  - Multiply appearance of the numbers from column 1 in column 2
+  - Sum the result of the multiply of each number and return. 
+
 
 ## Note
 ##### Check [GO standard library](https://pkg.go.dev/std) for details about the answers below.
