@@ -63,6 +63,7 @@ func sortColumns(column1, column2 []int) {
 
 }
 
+// Puzzle part 2
 func calculateSimilarityScore(column1, column2 []int) int {
 	countMap := make(map[int]int)
 
@@ -78,6 +79,7 @@ func calculateSimilarityScore(column1, column2 []int) int {
 	return similarityScore
 }
 
+// Puzzle part 1
 func calculateTotalDistance(column1, column2 []int) (int, error) {
 	// Assuming the location IDs are only integer here.
 	totalDistance := 0
