@@ -31,13 +31,7 @@ func parseLine(line []byte) (int, int, error) {
 	return num1, num2, nil
 }
 
-func sortColumns(column1, column2 []int) {
-	sort.Ints(column1)
-	sort.Ints(column2)
-
-}
-
-func calculateTotalDistance(inputData []byte) (int, error) {
+func parseInputData(inputData []byte) ([]int, []int, error) {
 	var column1, column2 []int
 
 	// Split a byte slice "data" into a slice of byte slices ([][]byte) based on delimiter"\n".
@@ -51,7 +45,7 @@ func calculateTotalDistance(inputData []byte) (int, error) {
 		}
 		num1, num2, err := parseLine(line)
 		if err != nil {
-			return 0, err
+			return nil, nil, err
 		}
 		column1 = append(column1, num1)
 		column2 = append(column2, num2)
@@ -60,6 +54,31 @@ func calculateTotalDistance(inputData []byte) (int, error) {
 	// Sort each column in-place
 	sortColumns(column1, column2)
 
+	return column1, column2, nil
+}
+
+func sortColumns(column1, column2 []int) {
+	sort.Ints(column1)
+	sort.Ints(column2)
+
+}
+
+func calculateSimilarityScore(column1, column2 []int) int {
+	countMap := make(map[int]int)
+
+	for _, num := range column2 {
+		countMap[num]++
+	}
+
+	similarityScore := 0
+	for _, num := range column1 {
+		similarityScore += countMap[num] * num
+	}
+
+	return similarityScore
+}
+
+func calculateTotalDistance(column1, column2 []int) (int, error) {
 	// Assuming the location IDs are only integer here.
 	totalDistance := 0
 	// Calculate each row difference
@@ -97,11 +116,21 @@ func main() {
 	if err != nil {
 		log.Fatalf("Error reading file: %v", err)
 	}
+	// Parse input data into two []int
+	column1, column2, err := parseInputData(inputData)
+	if err != nil {
+		log.Fatalf("Error parsing input data: %v", err)
+	}
 
-	// Parse the input data and process each line.
-	totalDistance, err := calculateTotalDistance(inputData)
+	totalDistance, err := calculateTotalDistance(column1, column2)
 	if err != nil {
 		log.Fatalf("Error calculating total distance: %v", err)
 	}
+	similarityScore := calculateSimilarityScore(column1, column2)
+	if err != nil {
+		log.Fatalf("Error calculating similarity score: %v", err)
+	}
+
 	fmt.Println("Total Distance:", totalDistance)
+	fmt.Println("Similarity Score:", similarityScore)
 }
