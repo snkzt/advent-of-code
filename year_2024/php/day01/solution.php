@@ -17,12 +17,7 @@ function parseLine(string $line): array {
     return [$num1, $num2];
 }
 
-function sortColumns(array &$colmn1, array &$colmn2): void {
-    sort($colmn1);
-    sort($colmn2);
-}
-
-function calculateTotalDistance(string $inputData): int {
+function parseInputData(string $inputData): array {
     $colmn1 = [];
     $colmn2 = [];
     $lines = explode("\n", $inputData);
@@ -44,6 +39,38 @@ function calculateTotalDistance(string $inputData): int {
 
     sortColumns($colmn1, $colmn2);
 
+    return [$colmn1, $colmn2];
+}
+
+function sortColumns(array &$colmn1, array &$colmn2): void {
+    sort($colmn1);
+    sort($colmn2);
+}
+
+// Puzzle part 2
+function calculateSimilarityScore(array $colmn1, array $colmn2): int {
+    $countMap = [];
+
+    foreach ($colmn2 as $num) {
+        if (isset($countMap[$num])) {
+            $countMap[$num]++;
+        } else {
+            $countMap[$num] = 1;
+        }
+    }
+
+    $similarityScore = 0;
+    foreach ($colmn1 as $num) {
+        if (isset($countMap[$num])) {
+            $similarityScore += $countMap[$num]* $num;
+        }
+    }
+
+    return $similarityScore;
+}
+
+// Puzzle part 1
+function calculateTotalDistance(array $colmn1, array $colmn2): int {
     $totalDistance = 0;
     for ($i = 0; $i < count($colmn1); $i++) {
         $totalDistance += Abs($colmn1[$i]-$colmn2[$i]);
@@ -68,9 +95,12 @@ function readFileContent(string $filePath): string {
 try {
     $filePath = "../../shared/inputs/day01/input.txt";
     $inputData = readFileContent($filePath);
-    $totalDistance = calculateTotalDistance($inputData);
+    $sortedArrays=parseInputData($inputData);
+    $totalDistance = calculateTotalDistance($sortedArrays[0], $sortedArrays[1]);
+    $similarityScore = calculateSimilarityScore($sortedArrays[0], $sortedArrays[1]);
 
     echo "Total Distance: " . $totalDistance . PHP_EOL;
+    echo "Similarity Score: " . $similarityScore . PHP_EOL;
 } catch (EXCEPTION $e) {
     echo "Error: " . $e->getMessage() . PHP_EOL;
 }
