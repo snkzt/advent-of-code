@@ -20,23 +20,7 @@ def parse_line(line):
 
     return num1, num2
 
-
-def sort_columns(column1, column2):
-    """
-    Sort two ists in-place, ascending order.
-    """
-    column1.sort()
-    column2.sort()
-
-
-def calculate_total_distance(input_data):
-    """
-    Calculate the total distance as the absolute difference between
-    the two values in a row from the two sorted columns retrieved from
-    the input data.
-    Return the total distance as an integer.
-    """
-
+def parse_input_data(input_data):
     column1 = []
     column2 = []
 
@@ -56,9 +40,49 @@ def calculate_total_distance(input_data):
 
     sort_columns(column1, column2)
 
+    return column1, column2
+
+
+def sort_columns(column1, column2):
+    """
+    Sort two ists in-place, ascending order.
+    """
+    column1.sort()
+    column2.sort()
+
+# Puzzle part 2
+def calculate_similarity_score(column1, column2):
+    """
+    Calculate similarity score by multiplying the number in column1
+    by the frequency of its appearance in column2.
+    Then add up the result and return an integer.
+    """
+    count_map = {}
+
+    for num in column2:
+        if num not in count_map:
+            # Initialise the key with 0 if it doesn't exist
+            count_map[num] = 0
+        
+        count_map[num] += 1
+    
+    similarity_score = 0
+    for num in column1:
+        if num in count_map:
+            similarity_score += count_map[num]*num
+    
+    return similarity_score
+
+# Puzzle part 1
+def calculate_total_distance(column1, column2):
+    """
+    Calculate the total distance as the absolute difference between
+    the two values in a row from the two sorted columns retrieved from
+    the input data.
+    Return the total distance as an integer.
+    """
     total_distance = sum(abs(col1-col2) for col1, col2 in zip(column1, column2))
     return total_distance
-
 
 def read_file_content(file_path):
     """
@@ -79,8 +103,11 @@ def main():
 
     try:
         input_data = read_file_content(file_path)
-        total_distance = calculate_total_distance(input_data)
+        sorted_array1, sorted_array2 = parse_input_data(input_data)
+        total_distance = calculate_total_distance(sorted_array1, sorted_array2)
+        similarity_score = calculate_similarity_score(sorted_array1, sorted_array2)
         print(f"Total distance: {total_distance}")
+        print(f"Similarity Score: {similarity_score}")
     except Exception as e:
         print(f"Error: {str(e)}")
 
